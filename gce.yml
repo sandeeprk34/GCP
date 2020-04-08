@@ -1,0 +1,23 @@
+---
+- name: Create GCP Instance
+  hosts: 127.0.0.1
+  connection: local
+  #gather_facts: yes
+  vars:
+    service_account_email: "973316095008-compute@developer.gserviceaccount.com"
+    credentials_file: "/Users/srk5oc9/Downloads/sa.json"
+    project_id: "mystic-impulse-245222"
+  tasks:
+    - name: create GCE instance
+      # Basic provisioning example.  Create multiple Debian 8 instances in the
+      # us-central1-a Zone of n1-standard-1 machine type.
+      gce:
+        instance_names: test
+        zone: us-central1-a
+        machine_type: n1-standard-1
+        image: debian-8
+        state: present
+        service_account_email: "{{ service_account_email }}"
+        credentials_file: "{{ credentials_file }}"
+        project_id: "{{ project_id }}"
+      register: gce
