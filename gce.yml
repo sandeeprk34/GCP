@@ -17,6 +17,7 @@
         machine_type: n1-standard-1
         image: debian-8
         state: present
+        network: sanvpc
         service_account_email: "{{ service_account_email }}"
         credentials_file: "{{ credentials_file }}"
         project_id: "{{ project_id }}"
